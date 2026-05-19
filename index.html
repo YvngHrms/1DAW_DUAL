@@ -4,9 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <meta name="author" content="Abraham García Nevado">
-    <title>Proyecto Dual Vitaly - Control de inventario</title>
+    <title>Proyecto Dual Vitaly - Control de inventario videoclub</title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+    <header>
+        <h1 class="titulo">Videoclub: RetroVisión - Control de inventario</h1>
+    </header>
+
+
+
+    <section class="card">
     <h1>Añadir producto</h1>
     <form action="">
         <label for="nombre">Nombre del producto</label>
@@ -21,8 +29,12 @@
         <label for="desc">Descripción</label>
         <input type="text" id="descripcion" name="descripcion">
 
+        <label for="anio">Año lanzamiento</label>
+        <input type="number" id="anio" name="anio" min="1900" max="2026">
+
         <button type="submit">Añadir producto</button>
     </form>
+    </section>
 
     <h1>Productos</h1>
 
@@ -33,10 +45,12 @@
                 <th>Cantidad</th>
                 <th>Precio</th>
                 <th>Descripción</th>
+                <th>Año</th>
             </tr>
         </thead>
     </table>
 
+    <section class="card">
     <h1>Editar producto</h1>
       <form action="">
         <label for="producto-editar">Producto</label>
@@ -52,8 +66,14 @@
         <label for="edit-descripcion">Descripción</label>
         <input type="text" id="edit-descripcion" name="descripcion">
 
+        <label for="edit-anio">Año lanzamiento</label>
+        <input type="number" id="edit-anio" name="anio" min="1900" max="2026">
+
         <button type="submit">Guardar cambios</button>
     </form>
+    </section>
 
+
+    
 </body>
 </html>
