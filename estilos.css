@@ -12,15 +12,12 @@ nav {
     z-index: 10;
     width: 100%;
     box-sizing: border-box;
-
-    padding: 10px 12px; /* más grande */
+    padding: 10px 12px;
     background-color: #c0c0c0;
     border-bottom: 2px solid #000000;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     box-shadow: inset -1px -1px 0 #808080, inset 1px 1px 0 #ffffff;
 }
 
@@ -39,12 +36,11 @@ nav li {
 
 nav a {
     display: inline-block;
-    padding: 8px 16px;  /* antes era más pequeño */
-    font-size: 15px;    /* más grande */
+    padding: 8px 16px;
+    font-size: 15px;
     background-color: #c0c0c0;
     color: #000000;
     text-decoration: none;
-
     box-shadow: inset -1px -1px 0 #808080, inset 1px 1px 0 #ffffff;
 }
 
@@ -76,7 +72,6 @@ header {
     background-color: #c0c0c0;
     border: 2px solid #000000;
     box-shadow: inset -2px -2px 0 #808080, inset 2px 2px 0 #ffffff;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -246,6 +241,31 @@ table td {
 table tbody tr:hover td {
     background-color: #000080;
     color: #ffffff;
+}
+
+.btn-eliminar {
+    background-color: #c0c0c0;
+    color: #000000;
+    border: none;
+    box-shadow: inset -1px -1px 0 #808080, inset 1px 1px 0 #ffffff;
+    padding: 2px 10px;
+    cursor: pointer;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 12px;
+}
+
+.btn-eliminar:hover {
+    background-color: #800000;
+    color: #ffffff;
+}
+
+.btn-eliminar:active {
+    box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #ffffff;
+}
+
+table td form {
+    margin: 0;
+    padding: 0;
 }
 
 footer {
