@@ -21,6 +21,11 @@
         <h1 class="titulo">Videoclub: RetroVisión - Control de inventario</h1>
     </header>
 
+    <section id="busqueda">
+      <label for="filtro-nombre">🔎 Buscar producto</label>
+      <input type="text" id="filtro-nombre" placeholder="Escribe el nombre...">
+    </section>
+
     <section id="añadir-producto" class="card">
     <h1>Añadir producto</h1>
     <form action="">
@@ -53,6 +58,7 @@
     </form>
     </section>
 
+    <section id="productos">
     <h1>Productos</h1>
 
     <table id="productos">
@@ -65,7 +71,11 @@
                 <th>Año</th>
             </tr>
         </thead>
+        <tbody id="lista-productos">
+          <!-- Las filas se generarán dinámicamente -->
+        </tbody>
     </table>
+    </section>
 
     <section id="editar-producto" class="card">
     <h1>Editar producto</h1>
@@ -96,11 +106,25 @@
             <span aria-hidden="true"></span>
             <input type="number" id="edit-anio" name="anio" min="1900" max="2026">
         </div>
+        <div>
+            <label for="accion-producto">Acción</label>
+            <span aria-hidden="true"></span>
+            <select id="accion-producto" name="accion">
+                <option value="editar" selected>Editar</option>
+                <option value="eliminar">Eliminar</option>
+            </select>
+        </div>
         <button type="submit">Guardar cambios</button>
     </form>
     </section>
 
+    <footer>
+        <p><strong>Videoclub RetroVisión</strong> — Control de inventario</p>
+        <p>Proyecto Dual Vitaly · Desarrollado por Abraham García Nevado</p>
+        <p>&copy; 2026 RetroVisión. Todos los derechos reservados.</p>
+    </footer>
 
-    
+    <div id="mensaje" role="status" aria-live="polite"></div>
+
 </body>
 </html>
