@@ -16,6 +16,11 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+
 body {
     background-color: var(--negro);
     color: var(--blanco);
@@ -70,6 +75,19 @@ nav a:hover {
 .nav-icons img {
     width: 46px;
     height: 46px;
+    object-fit: contain;
+    filter: drop-shadow(2px 2px 0 var(--rojo));
+}
+
+.nav-logo-link {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.nav-logo {
+    width: 64px;
+    height: 64px;
     object-fit: contain;
     filter: drop-shadow(2px 2px 0 var(--rojo));
 }
@@ -828,4 +846,127 @@ footer {
 
 .login-pie a:hover {
     color: var(--verde);
+}
+
+/* DASHBOARD */
+
+.dashboard-header {
+    margin: 14px 14px 0;
+    padding: 22px 20px;
+    background-color: var(--gris);
+    border: 3px solid var(--rojo);
+    border-left: 8px solid var(--rojo);
+    box-shadow: 4px 4px 0 var(--negro);
+}
+
+.dashboard-header-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.dashboard-saludo {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: var(--rojo);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.dashboard-header .titulo {
+    font-size: clamp(24px, 5vw, 48px);
+}
+
+.dashboard-main {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 14px 60px;
+}
+
+.dashboard-subtitulo {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+@media (max-width: 600px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.dashboard-card {
+    background-color: var(--gris);
+    border: 2px solid var(--verde);
+    box-shadow: 4px 4px 0 var(--negro);
+    padding: 20px 18px;
+    text-decoration: none;
+    color: var(--blanco);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dashboard-card:hover {
+    border-color: var(--amarillo);
+    box-shadow: 6px 6px 0 var(--negro);
+}
+
+.dashboard-card-disabled {
+    border-color: #333;
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.dashboard-card-disabled:hover {
+    border-color: #333;
+    box-shadow: 4px 4px 0 var(--negro);
+}
+
+.dashboard-icon {
+    font-size: 32px;
+    line-height: 1;
+}
+
+.dashboard-card h2 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 20px;
+    font-weight: normal;
+    color: var(--verde);
+    letter-spacing: 0.03em;
+}
+
+.dashboard-card-disabled h2 {
+    color: #666;
+}
+
+.dashboard-card p {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: #aaa;
+    line-height: 1.6;
+    flex: 1;
+}
+
+.dashboard-cta {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: var(--amarillo);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+}
+
+.dashboard-card-disabled .dashboard-cta {
+    color: #555;
 }

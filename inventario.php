@@ -13,15 +13,18 @@
     ?>
 
     <nav>
+        <a href="retrovision.html" class="nav-logo-link">
+            <img src=".\imagenes\RetroVision.png" alt="RetroVisión" class="nav-logo">
+        </a>
         <ul>
-            <li><a href="#productos">Productos</a></li>
             <li><a href="#añadir-producto">Añadir producto</a></li>
             <li><a href="#editar-producto">Editar producto</a></li>
+            <li><a href="#productos">Ver tabla</a></li>
+            <li><a href="retrovision.html">← Inicio</a></li>
         </ul>
-        <div class="nav-icons">
-            <img src=".\imagenes\RetroVision.png" alt="RetroVisión">
-            <img src=".\imagenes\Vitaly.png" alt="Vitaly">
-        </div>
+        <a href="https://vitaly.es/" target="_blank" class="nav-logo-link">
+            <img src=".\imagenes\Vitaly.png" alt="Vitaly" class="nav-logo">
+        </a>
     </nav>
 
     <header>

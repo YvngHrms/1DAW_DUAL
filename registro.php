@@ -6,8 +6,19 @@
     <meta name="author" content="Abraham García Nevado">
     <title>Proyecto Dual Vitaly - Retrovision registro</title>
     <link rel="stylesheet" href="estilos.css">
-    <link rel="stylesheet" href="login.css">
 </head>
+
+<?php
+if (isset($_GET['error'])) {
+    if ($_GET['error'] == "pass") {
+        echo "<p style='color:red'>Las contraseñas no coinciden</p>";
+    }
+    if ($_GET['error'] == "exists") {
+        echo "<p style='color:red'>Ese usuario ya existe</p>";
+    }
+}
+?>
+
 <body>
 
     <nav>
