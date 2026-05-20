@@ -12,5 +12,5 @@ $sql = "INSERT INTO productos (nombre, cantidad, precio, descripcion, anio)
 
 $conexion->query($sql);
 
-echo "OK";
+header("Location: index.php");
 ?>
