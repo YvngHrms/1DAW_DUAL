@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="Abraham García Nevado">
+    <title>Proyecto Dual Vitaly - Retrovision inicio</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="retrovision.css">
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#sobre-nosotros">Quiénes somos</a></li>
+            <li><a href="#catalogo">Catálogo</a></li>
+            <li><a href="#trailers">Trailers</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <div class="nav-icons">
+            <img src="./imagenes/RetroVision.png" alt="RetroVisión">
+            <img src="./imagenes/Vitaly.png" alt="Vitaly">
+        </div>
+        <a href="login.php" class="btn-login">Identifícate</a>
+    </nav>
+
+    <section id="hero">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="./video/fondo.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="titulo">RetroVisión</h1>
+            <p class="hero-sub">El videoclub de tu barrio. Las películas de siempre.</p>
+            <a href="#catalogo" class="btn-hero">Ver catálogo</a>
+        </div>
+    </section>
+
+    <section id="sobre-nosotros" class="seccion">
+        <div class="seccion-inner sobre-grid">
+            <div class="sobre-texto">
+                <h2 class="seccion-titulo">Quiénes somos</h2>
+                <p>RetroVisión nació en 1994 como un videoclub de barrio. Sobrevivimos al VHS, al DVD y al streaming. Aquí el cine se toca, se huele y se devuelve antes de las 10.</p>
+                <p>Más de 3.000 títulos en catálogo. Clásicos que no encontrarás en ninguna plataforma. Y un local donde todavía puedes preguntar «¿qué me recomiendas?» y obtener una respuesta de verdad.</p>
+            </div>
+            <div class="sobre-stats">
+                <div class="stat">
+                    <span class="stat-num">3.000+</span>
+                    <span class="stat-label">Títulos en stock</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">30</span>
+                    <span class="stat-label">Años en el barrio</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">1</span>
+                    <span class="stat-label">Local. Sin franquicias.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="catalogo" class="seccion seccion-oscura">
+        <div class="seccion-inner">
+            <h2 class="seccion-titulo">Nuestro catálogo</h2>
+            <div class="catalogo-grid">
+                <div class="categoria-card">
+                    <span class="categoria-icon">🎬</span>
+                    <h3>Clásicos</h3>
+                    <p>Kubrick, Hitchcock, Tarkovsky. Las obras que lo empezaron todo.</p>
+                </div>
+                <div class="categoria-card">
+                    <span class="categoria-icon">💀</span>
+                    <h3>Terror</h3>
+                    <p>Serie B, slashers de los 80, horror italiano. Nada de remakes.</p>
+                </div>
+                <div class="categoria-card">
+                    <span class="categoria-icon">🔫</span>
+                    <h3>Acción</h3>
+                    <p>Van Damme, Stallone, Jackie Chan. La acción de antes tenía consecuencias.</p>
+                </div>
+                <div class="categoria-card">
+                    <span class="categoria-icon">🌌</span>
+                    <h3>Ciencia ficción</h3>
+                    <p>Desde el Blade Runner original hasta cosas que no verás en Netflix.</p>
+                </div>
+                <div class="categoria-card">
+                    <span class="categoria-icon">🎭</span>
+                    <h3>Drama</h3>
+                    <p>Cine europeo, latinoamericano, asiático. Sin subtítulos duales.</p>
+                </div>
+                <div class="categoria-card">
+                    <span class="categoria-icon">⭐</span>
+                    <h3>Recomendados</h3>
+                    <p>Lo que nosotros elegiríamos para ti si supiéramos lo que has visto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="trailers" class="seccion">
+        <div class="seccion-inner">
+            <h2 class="seccion-titulo">En cartelera esta semana</h2>
+            <div class="trailers-grid">
+                <div class="trailer-card">
+                    <div class="trailer-video">
+                        <video src="./video/trailer1.mp4" controls muted></video>
+                    </div>
+                    <p class="trailer-titulo">Blade Runner</p>
+                </div>
+                <div class="trailer-card">
+                    <div class="trailer-video">
+                        <video src="./video/trailer2.mp4" controls muted></video>
+                    </div>
+                    <p class="trailer-titulo">Pulp Fiction</p>
+                </div>
+                <div class="trailer-card">
+                    <div class="trailer-video">
+                        <video src="./video/trailer3.mp4" controls muted></video>
+                    </div>
+                    <p class="trailer-titulo">The Matrix</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="seccion seccion-oscura">
+        <div class="seccion-inner contacto-grid">
+            <div>
+                <h2 class="seccion-titulo">Encuéntranos</h2>
+                <p>Calle del Cine Clasico, 7<br>Badajoz, 06005</p>
+                <p>Lunes a sábado: 16:00 — 22:00</p>
+                <p>retrovision@barrio.es</p>
+            </div>
+            <div class="contacto-aviso">
+                <p>¿Quieres reservar una película?</p>
+                <a href="login.php" class="btn-hero">Crea tu cuenta</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <img src="./imagenes/RetroVision.png" alt="RetroVisión">
+            <div class="footer-text">
+                <p><strong>Videoclub RetroVisión</strong> — Desde 1994</p>
+                <p>Proyecto Dual Vitaly · Desarrollado por Abraham García Nevado</p>
+                <p>&copy; 2026 RetroVisión. Todos los derechos reservados.</p>
+            </div>
+            <img src="./imagenes/Vitaly.png" alt="Vitaly">
+        </div>
+    </footer>
+
+</body>
+</html>

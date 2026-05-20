@@ -13,5 +13,5 @@ $sql = "UPDATE productos
 
 $conexion->query($sql);
 
-header("Location: index.php");
+header("Location: inventario.php");
 ?>

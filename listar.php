@@ -9,5 +9,5 @@ while ($fila = $resultado->fetch_assoc()) {
     $productos[] = $fila;
 }
 
-header("Location: index.php");
+header("Location: inventario.php");
 ?>
