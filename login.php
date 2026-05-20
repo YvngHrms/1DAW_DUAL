@@ -7,33 +7,31 @@
     <title>Proyecto Dual Vitaly - Retrovision login</title>
     <link rel="stylesheet" href="estilos.css">
 </head>
-
-<?php
-if (isset($_GET['error'])) {
-    if ($_GET['error'] == "nouser") {
-        echo "<p style='color:red'>El usuario no existe. Regístrate.</p>";
-    }
-    if ($_GET['error'] == "wrongpass") {
-        echo "<p style='color:red'>Contraseña incorrecta.</p>";
-    }
-}
-?>
-
 <body>
 
     <nav>
         <ul>
             <li><a href="retrovision.html">← Volver al inicio</a></li>
         </ul>
-        <div class="nav-icons">
-            <img src="./imagenes/RetroVision.png" alt="RetroVisión">
-            <img src="./imagenes/Vitaly.png" alt="Vitaly">
+        <div class="nav-logos">
+            <a href="retrovision.html">
+                <img src="./imagenes/RetroVision.png" alt="RetroVisión" class="nav-logo">
+            </a>
+            <a href="https://vitaly.es/" target="_blank">
+                <img src="./imagenes/Vitaly.png" alt="Vitaly" class="nav-logo">
+            </a>
         </div>
     </nav>
 
     <main id="login-main">
         <div class="login-card">
             <h1>Identifícate</h1>
+            <?php
+            if (isset($_GET['error'])) {
+                if ($_GET['error'] == "nouser") echo "<p style='color:red; padding:8px 16px;'>El usuario no existe. Regístrate.</p>";
+                if ($_GET['error'] == "wrongpass") echo "<p style='color:red; padding:8px 16px;'>Contraseña incorrecta.</p>";
+            }
+            ?>
             <form action="procesar_login.php" method="POST">
                 <div class="campo">
                     <label for="usuario">Usuario</label>

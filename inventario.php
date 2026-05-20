@@ -8,23 +8,25 @@
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    <?php
-        include "db.php";
-    ?>
+    <?php include "db.php"; ?>
 
     <nav>
-        <a href="retrovision.html" class="nav-logo-link">
-            <img src=".\imagenes\RetroVision.png" alt="RetroVisión" class="nav-logo">
-        </a>
+        <div class="nav-logos">
+            <a href="retrovision.html">
+                <img src="./imagenes/RetroVision.png" alt="RetroVisión" class="nav-logo">
+            </a>
+        </div>
         <ul>
-            <li><a href="#añadir-producto">Añadir producto</a></li>
-            <li><a href="#editar-producto">Editar producto</a></li>
-            <li><a href="#productos">Ver tabla</a></li>
+            <li><a href="#añadir-producto">Añadir</a></li>
+            <li><a href="#editar-producto">Editar</a></li>
+            <li><a href="#productos">Tabla</a></li>
             <li><a href="retrovision.html">← Inicio</a></li>
         </ul>
-        <a href="https://vitaly.es/" target="_blank" class="nav-logo-link">
-            <img src=".\imagenes\Vitaly.png" alt="Vitaly" class="nav-logo">
-        </a>
+        <div class="nav-logos">
+            <a href="https://vitaly.es/" target="_blank">
+                <img src="./imagenes/Vitaly.png" alt="Vitaly" class="nav-logo">
+            </a>
+        </div>
     </nav>
 
     <header>
@@ -81,10 +83,10 @@
                         <select id="producto-editar" name="id" required>
                             <option value="">-- Selecciona --</option>
                             <?php
-                                $result = $conexion->query("SELECT id, nombre FROM productos");
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<option value='{$row['id']}'>{$row['nombre']}</option>";
-                                }
+                            $result = $conexion->query("SELECT id, nombre FROM productos");
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<option value='{$row['id']}'>{$row['nombre']}</option>";
+                            }
                             ?>
                         </select>
                     </div>
@@ -131,22 +133,22 @@
                     </thead>
                     <tbody>
                         <?php
-                            $resultado = $conexion->query("SELECT * FROM productos");
-                            while ($fila = $resultado->fetch_assoc()) {
-                                echo "<tr>
-                                    <td>{$fila['nombre']}</td>
-                                    <td>{$fila['cantidad']}</td>
-                                    <td>{$fila['precio']}</td>
-                                    <td>{$fila['descripcion']}</td>
-                                    <td>{$fila['anio']}</td>
-                                    <td>
-                                        <form action='eliminar.php' method='POST'>
-                                            <input type='hidden' name='id' value='{$fila['id']}'>
-                                            <button type='submit' class='btn-eliminar'>Eliminar</button>
-                                        </form>
-                                    </td>
-                                </tr>";
-                            }
+                        $resultado = $conexion->query("SELECT * FROM productos");
+                        while ($fila = $resultado->fetch_assoc()) {
+                            echo "<tr>
+                                <td>{$fila['nombre']}</td>
+                                <td>{$fila['cantidad']}</td>
+                                <td>{$fila['precio']}</td>
+                                <td>{$fila['descripcion']}</td>
+                                <td>{$fila['anio']}</td>
+                                <td>
+                                    <form action='eliminar.php' method='POST'>
+                                        <input type='hidden' name='id' value='{$fila['id']}'>
+                                        <button type='submit' class='btn-eliminar'>Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>";
+                        }
                         ?>
                     </tbody>
                 </table>

@@ -7,18 +7,6 @@
     <title>Proyecto Dual Vitaly - Retrovision registro</title>
     <link rel="stylesheet" href="estilos.css">
 </head>
-
-<?php
-if (isset($_GET['error'])) {
-    if ($_GET['error'] == "pass") {
-        echo "<p style='color:red'>Las contraseñas no coinciden</p>";
-    }
-    if ($_GET['error'] == "exists") {
-        echo "<p style='color:red'>Ese usuario ya existe</p>";
-    }
-}
-?>
-
 <body>
 
     <nav>
@@ -26,15 +14,25 @@ if (isset($_GET['error'])) {
             <li><a href="retrovision.html">← Volver al inicio</a></li>
             <li><a href="login.php">Iniciar sesión</a></li>
         </ul>
-        <div class="nav-icons">
-            <img src="./imagenes/RetroVision.png" alt="RetroVisión">
-            <img src="./imagenes/Vitaly.png" alt="Vitaly">
+        <div class="nav-logos">
+            <a href="retrovision.html">
+                <img src="./imagenes/RetroVision.png" alt="RetroVisión" class="nav-logo">
+            </a>
+            <a href="https://vitaly.es/" target="_blank">
+                <img src="./imagenes/Vitaly.png" alt="Vitaly" class="nav-logo">
+            </a>
         </div>
     </nav>
 
     <main id="login-main">
         <div class="login-card">
             <h1>Crear cuenta</h1>
+            <?php
+            if (isset($_GET['error'])) {
+                if ($_GET['error'] == "pass") echo "<p style='color:red; padding:8px 16px;'>Las contraseñas no coinciden.</p>";
+                if ($_GET['error'] == "exists") echo "<p style='color:red; padding:8px 16px;'>Ese usuario ya existe.</p>";
+            }
+            ?>
             <form action="procesar_registro.php" method="POST">
                 <div class="campo">
                     <label for="usuario">Usuario</label>
