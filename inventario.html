@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    <?php require_once "funciones.php"; ?>
 
     <nav>
         <div class="nav-logos">
-            <a href="retrovision.html">
+            <a href="index.html">
                 <img src="./imagenes/RetroVision.png" alt="RetroVisión" class="nav-logo">
             </a>
         </div>
@@ -20,7 +19,7 @@
             <li><a href="#añadir-producto">Añadir</a></li>
             <li><a href="#editar-producto">Editar</a></li>
             <li><a href="#productos">Tabla</a></li>
-            <li><a href="retrovision.html">← Inicio</a></li>
+            <li><a href="index.html">← Inicio</a></li>
         </ul>
         <div class="nav-logos">
             <a href="https://vitaly.es/" target="_blank">
@@ -38,38 +37,39 @@
         <div class="columna-forms">
 
             <section id="busqueda">
-                <label for="filtro-nombre">🔎 Buscar producto</label>
-                <input type="text" id="filtro-nombre" placeholder="Escribe el nombre...">
+                <form>
+                    <label for="filtro-nombre">🔎 Buscar producto</label>
+                    <input type="text" id="filtro-nombre" placeholder="Escribe el nombre...">
+                </form>
             </section>
 
             <section id="añadir-producto" class="card">
                 <h1>Añadir producto</h1>
-                <form action="funciones.php" method="POST">
-                    <input type="hidden" name="accion" value="añadir_producto">
+                <form id="form-anadir">
                     <div>
                         <label for="nombre">Nombre del producto</label>
                         <span aria-hidden="true"></span>
-                        <input type="text" id="nombre" name="nombre">
+                        <input type="text" id="nombre">
                     </div>
                     <div>
                         <label for="cantidad">Cantidad</label>
                         <span aria-hidden="true"></span>
-                        <input type="number" id="cantidad" name="cantidad">
+                        <input type="number" id="cantidad">
                     </div>
                     <div>
                         <label for="precio">Precio</label>
                         <span aria-hidden="true"></span>
-                        <input type="number" id="precio" name="precio">
+                        <input type="number" id="precio">
                     </div>
                     <div>
                         <label for="descripcion">Descripción</label>
                         <span aria-hidden="true"></span>
-                        <input type="text" id="descripcion" name="descripcion">
+                        <input type="text" id="descripcion">
                     </div>
                     <div>
                         <label for="anio">Año lanzamiento</label>
                         <span aria-hidden="true"></span>
-                        <input type="number" id="anio" name="anio" min="1900" max="2026">
+                        <input type="number" id="anio" min="1900" max="2026">
                     </div>
                     <button type="submit">Añadir producto</button>
                 </form>
@@ -77,40 +77,33 @@
 
             <section id="editar-producto" class="card">
                 <h1>Editar producto</h1>
-                <form action="funciones.php" method="POST">
-                    <input type="hidden" name="accion" value="actualizar_producto">
+                <form id="form-editar">
                     <div>
                         <label for="producto-editar">Producto</label>
                         <span aria-hidden="true"></span>
-                        <select id="producto-editar" name="id" required>
+                        <select id="producto-editar" required>
                             <option value="">-- Selecciona --</option>
-                            <?php
-                            $result = $conexion->query("SELECT id, nombre FROM productos");
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<option value='{$row['id']}'>{$row['nombre']}</option>";
-                            }
-                            ?>
                         </select>
                     </div>
                     <div>
                         <label for="edit-cantidad">Cantidad</label>
                         <span aria-hidden="true"></span>
-                        <input type="number" id="edit-cantidad" name="cantidad" min="0" required>
+                        <input type="number" id="edit-cantidad" min="0" required>
                     </div>
                     <div>
                         <label for="edit-precio">Precio</label>
                         <span aria-hidden="true"></span>
-                        <input type="number" id="edit-precio" name="precio" min="0" step="0.01" required>
+                        <input type="number" id="edit-precio" min="0" step="0.01" required>
                     </div>
                     <div>
                         <label for="edit-descripcion">Descripción</label>
                         <span aria-hidden="true"></span>
-                        <input type="text" id="edit-descripcion" name="descripcion">
+                        <input type="text" id="edit-descripcion">
                     </div>
                     <div>
                         <label for="edit-anio">Año lanzamiento</label>
                         <span aria-hidden="true"></span>
-                        <input type="number" id="edit-anio" name="anio" min="1900" max="2026">
+                        <input type="number" id="edit-anio" min="1900" max="2026">
                     </div>
                     <button type="submit">Guardar cambios</button>
                 </form>
@@ -133,27 +126,7 @@
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php
-                        $resultado = $conexion->query("SELECT * FROM productos");
-                        while ($fila = $resultado->fetch_assoc()) {
-                            echo "<tr>
-                                <td>{$fila['nombre']}</td>
-                                <td>{$fila['cantidad']}</td>
-                                <td>{$fila['precio']}</td>
-                                <td>{$fila['descripcion']}</td>
-                                <td>{$fila['anio']}</td>
-                                <td>
-                                    <form action='funciones.php' method='POST'>
-                                        <input type='hidden' name='accion' value='eliminar_producto'>
-                                        <input type='hidden' name='id' value='{$fila['id']}'>
-                                        <button type='submit' class='btn-eliminar'>Eliminar</button>
-                                    </form>
-                                </td>
-                            </tr>";
-                        }
-                        ?>
-                    </tbody>
+                    <tbody id="tbody-productos"></tbody>
                 </table>
             </section>
 
@@ -174,6 +147,8 @@
     </footer>
 
     <div id="mensaje" role="status" aria-live="polite"></div>
+
+    <script src="app.js"></script>
 
 </body>
 </html>

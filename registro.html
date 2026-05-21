@@ -11,11 +11,11 @@
 
     <nav>
         <ul>
-            <li><a href="retrovision.html">← Volver al inicio</a></li>
-            <li><a href="login.php">Iniciar sesión</a></li>
+            <li><a href="index.html">← Volver al inicio</a></li>
+            <li><a href="login.html">Iniciar sesión</a></li>
         </ul>
         <div class="nav-logos">
-            <a href="retrovision.html">
+            <a href="index.html">
                 <img src="./imagenes/RetroVision.png" alt="RetroVisión" class="nav-logo">
             </a>
             <a href="https://vitaly.es/" target="_blank">
@@ -27,14 +27,8 @@
     <main id="login-main">
         <div class="login-card">
             <h1>Crear cuenta</h1>
-            <?php
-            if (isset($_GET['error'])) {
-                if ($_GET['error'] == "pass") echo "<p style='color:red; padding:8px 16px;'>Las contraseñas no coinciden.</p>";
-                if ($_GET['error'] == "exists") echo "<p style='color:red; padding:8px 16px;'>Ese usuario ya existe.</p>";
-            }
-            ?>
-            <form action="funciones.php" method="POST">
-                <input type="hidden" name="accion" value="registro">
+            <p id="error-msg" style="color:red; padding:8px 16px;"></p>
+            <form id="form-registro">
                 <div class="campo">
                     <label for="usuario">Usuario</label>
                     <input type="text" id="usuario" name="usuario" placeholder="tu_usuario" autocomplete="username">
@@ -53,7 +47,7 @@
                 </div>
                 <button type="submit">Registrarse</button>
             </form>
-            <p class="login-pie">¿Ya tienes cuenta? <a href="login.php">Identifícate</a></p>
+            <p class="login-pie">¿Ya tienes cuenta? <a href="login.html">Identifícate</a></p>
         </div>
     </main>
 
@@ -68,6 +62,6 @@
             <img src="./imagenes/Vitaly.png" alt="Vitaly">
         </div>
     </footer>
-
+    <script src="app.js"></script>
 </body>
 </html>

@@ -562,6 +562,13 @@ table td form { margin: 0; padding: 0; }
     display: none;
 }
 
+#busqueda form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
 
 /* ── LOGIN / REGISTRO ── */
 
@@ -774,14 +781,33 @@ table td form { margin: 0; padding: 0; }
 
 @media (max-width: 600px) {
     .sobre-grid, .contacto-grid { grid-template-columns: 1fr; }
-
     .catalogo-grid { grid-template-columns: repeat(2, 1fr); }
-
     .dashboard-grid { grid-template-columns: 1fr; }
-
     nav a { padding: 5px 8px; font-size: 11px; }
-
     .footer-content { flex-direction: column; text-align: center; }
+
+    nav:not(.nav-inicio) { flex-wrap: nowrap; }
+    nav:not(.nav-inicio) ul { flex-wrap: nowrap; overflow-x: auto; }
+    .nav-logos:last-child { display: none; }
+}
+
+@media (max-width: 768px) {
+    .nav-inicio {
+        flex-wrap: wrap;
+    }
+    .nav-inicio > ul {
+        order: 1;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding-top: 6px;
+        border-top: 1px solid #333;
+        margin-top: 4px;
+    }
+    .nav-inicio > .btn-login {
+        order: 1;
+        margin-top: 6px;
+    }
 }
 
 @media (max-width: 440px) {
