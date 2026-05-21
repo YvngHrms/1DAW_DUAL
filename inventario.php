@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    <?php include "db.php"; ?>
+    <?php require_once "funciones.php"; ?>
 
     <nav>
         <div class="nav-logos">
@@ -44,7 +44,8 @@
 
             <section id="añadir-producto" class="card">
                 <h1>Añadir producto</h1>
-                <form action="insertar.php" method="POST">
+                <form action="funciones.php" method="POST">
+                    <input type="hidden" name="accion" value="añadir_producto">
                     <div>
                         <label for="nombre">Nombre del producto</label>
                         <span aria-hidden="true"></span>
@@ -76,7 +77,8 @@
 
             <section id="editar-producto" class="card">
                 <h1>Editar producto</h1>
-                <form action="editar.php" method="POST">
+                <form action="funciones.php" method="POST">
+                    <input type="hidden" name="accion" value="actualizar_producto">
                     <div>
                         <label for="producto-editar">Producto</label>
                         <span aria-hidden="true"></span>
@@ -142,7 +144,8 @@
                                 <td>{$fila['descripcion']}</td>
                                 <td>{$fila['anio']}</td>
                                 <td>
-                                    <form action='eliminar.php' method='POST'>
+                                    <form action='funciones.php' method='POST'>
+                                        <input type='hidden' name='accion' value='eliminar_producto'>
                                         <input type='hidden' name='id' value='{$fila['id']}'>
                                         <button type='submit' class='btn-eliminar'>Eliminar</button>
                                     </form>

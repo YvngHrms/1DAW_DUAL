@@ -32,7 +32,8 @@
                 if ($_GET['error'] == "wrongpass") echo "<p style='color:red; padding:8px 16px;'>Contraseña incorrecta.</p>";
             }
             ?>
-            <form action="procesar_login.php" method="POST">
+            <form action="funciones.php" method="POST">
+                <input type="hidden" name="accion" value="login">
                 <div class="campo">
                     <label for="usuario">Usuario</label>
                     <input type="text" id="usuario" name="usuario" placeholder="tu_usuario" autocomplete="username">

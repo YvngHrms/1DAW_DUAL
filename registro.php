@@ -33,7 +33,8 @@
                 if ($_GET['error'] == "exists") echo "<p style='color:red; padding:8px 16px;'>Ese usuario ya existe.</p>";
             }
             ?>
-            <form action="procesar_registro.php" method="POST">
+            <form action="funciones.php" method="POST">
+                <input type="hidden" name="accion" value="registro">
                 <div class="campo">
                     <label for="usuario">Usuario</label>
                     <input type="text" id="usuario" name="usuario" placeholder="tu_usuario" autocomplete="username">
