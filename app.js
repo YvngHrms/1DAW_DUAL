@@ -171,7 +171,7 @@ function eliminarProducto(id) {
     cargarInventario();
 }
 
-// Búsqueda en tiempo real (ya no hace falta Enter, filtra mientras escribes)
+// Búsqueda en tiempo real
 const inputBuscar = document.getElementById('filtro-nombre');
 if (inputBuscar) {
     inputBuscar.addEventListener('input', function () {
