@@ -502,7 +502,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 16px;
 }
 
 table th {
@@ -777,6 +777,11 @@ table td form { margin: 0; padding: 0; }
     .trailers-grid { grid-template-columns: 1fr; }
 
     .nav-logo { width: 44px; height: 44px; }
+
+    table { font-size: 11px; }
+    table th { font-size: 10px; padding: 4px 4px; }
+    table td { padding: 3px 4px; }
+    .btn-eliminar { padding: 2px 6px; font-size: 10px; }
 }
 
 @media (max-width: 600px) {
