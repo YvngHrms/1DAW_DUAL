@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <meta name="author" content="Abraham García Nevado">
-    <title>Proyecto Dual Vitaly - RetroVisión</title>
+    <title>Proyecto Dual Vitaly - Catálogo RetroVisión</title>
     <link rel="icon" href="./imagenes/RetroVision.png" type="image/png">
     <link rel="stylesheet" href=".\css\base.css">
     <link rel="stylesheet" href=".\css\nav.css">
+    <link rel="stylesheet" href=".\css\inicio.css">
     <link rel="stylesheet" href=".\css\dashboard.css">
     <link rel="stylesheet" href=".\css\responsive.css">
 </head>
@@ -15,12 +16,12 @@
 
     <nav>
         <div class="nav-logos">
-            <a href="index.html" class="nav-logo-link">
+            <a href="homelobby.html">
                 <img src="./imagenes/RetroVision.png" alt="RetroVisión" class="nav-logo">
             </a>
         </div>
         <ul>
-            <li><a href="index.html">← Inicio</a></li>
+            <li><a href="homelobby.html">← Mi cuenta</a></li>
             <li><a href="#" id="btn-logout">Cerrar sesión</a></li>
         </ul>
         <div class="nav-logos">
@@ -30,27 +31,16 @@
         </div>
     </nav>
 
-    <header class="dashboard-header">
-        <p class="dashboard-saludo">— Mi cuenta —</p>
-        <h1 class="titulo">Bienvenido al videoclub</h1>
+    <header>
+        <h1 class="titulo">Catálogo de películas</h1>
     </header>
 
-    <main class="dashboard-main">
-
-        <p class="dashboard-subtitulo">¿Qué quieres hacer hoy?</p>
-
-        <div class="dashboard-grid">
-
-            <a href="catalogo.html" class="dashboard-card">
-                <span class="dashboard-icon">🎬</span>
-                <h2>Ver catálogo</h2>
-                <p>Explora los más de 3.000 títulos disponibles. Clásicos, terror, acción, ciencia ficción y más.</p>
-                <span class="dashboard-cta">Ver catálogo →</span>
-            </a>
-
+    <div class="seccion">
+        <div class="seccion-inner">
+            <h2 class="seccion-titulo">Títulos disponibles</h2>
+            <div id="grid-catalogo" class="catalogo-peliculas"></div>
         </div>
-
-    </main>
+    </div>
 
     <footer>
         <div class="footer-content">
@@ -63,6 +53,8 @@
             <img src="./imagenes/Vitaly.png" alt="Vitaly">
         </div>
     </footer>
+
     <script src="app.js"></script>
+
 </body>
 </html>

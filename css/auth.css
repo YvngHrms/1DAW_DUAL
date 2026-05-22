@@ -1,0 +1,80 @@
+/* ── LOGIN / REGISTRO ── */
+
+#login-main {
+    min-height: calc(100vh - 140px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 14px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 380px;
+    background-color: var(--gris);
+    border: 2px solid var(--blanco);
+    box-shadow: 4px 4px 0 var(--negro);
+}
+
+.login-card h1 {
+    font-family: var(--marker);
+    font-size: 22px;
+    font-weight: normal;
+    color: var(--negro);
+    background-color: var(--amarillo);
+    padding: 8px 14px;
+    border-bottom: 2px solid var(--negro);
+    letter-spacing: 0.05em;
+}
+
+.login-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px 16px 16px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo label {
+    font-size: 12px;
+    color: var(--amarillo);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.campo input {
+    height: 32px;
+    padding: 0 8px;
+    font-family: var(--mono);
+    font-size: 13px;
+    background-color: var(--negro);
+    color: var(--verde);
+    border: 1px solid #333;
+    outline: none;
+}
+
+.campo input:focus { border-color: var(--verde); }
+.campo input::placeholder { color: #444; }
+
+.login-card form button {
+    margin-top: 4px;
+    padding: 9px 20px;
+    font-size: 17px;
+    align-self: flex-start;
+}
+
+.login-pie {
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #888;
+    border-top: 1px solid #333;
+    text-align: center;
+}
+
+.login-pie a { color: var(--azul); text-decoration: none; }
+.login-pie a:hover { color: var(--verde); }

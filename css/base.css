@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Share+Tech+Mono&display=swap');
+
+:root {
+    --rojo: #b81c1c;
+    --azul: #1a3aff;
+    --verde: #1aff6e;
+    --amarillo: #d4b800;
+    --negro: #0d0d0d;
+    --gris: #2a2a2a;
+    --blanco: #e8e8e0;
+    --mono: 'Share Tech Mono', monospace;
+    --marker: 'Permanent Marker', cursive;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    background-color: var(--negro);
+    color: var(--blanco);
+    font-family: var(--mono);
+    font-size: 13px;
+}
+
+.titulo {
+    font-family: var(--marker);
+    font-size: clamp(18px, 4vw, 34px);
+    font-weight: normal;
+    color: var(--amarillo);
+    text-shadow: 3px 3px 0 var(--negro);
+}
+
+header {
+    margin: 14px 14px 0;
+    padding: 22px 20px;
+    background-color: var(--gris);
+    border: 3px solid var(--amarillo);
+    border-left: 8px solid var(--amarillo);
+    box-shadow: 4px 4px 0 var(--negro);
+}
+
+footer {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px 20px;
+    background-color: #1c1c1c;
+    border-top: 3px solid var(--rojo);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.footer-content img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    filter: grayscale(40%) drop-shadow(2px 2px 0 var(--rojo));
+}
+
+.footer-text { text-align: center; color: #888; }
+.footer-text p { margin: 0 0 3px; }
+.footer-text p:last-child { font-size: 11px; color: #555; }
+
+.footer-text strong {
+    font-family: var(--marker);
+    font-size: 15px;
+    font-weight: normal;
+    color: var(--amarillo);
+}

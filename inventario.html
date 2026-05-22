@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width">
     <meta name="author" content="Abraham García Nevado">
     <title>Proyecto Dual Vitaly - Control de inventario videoclub</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="icon" href="./imagenes/RetroVision.png" type="image/png">
+    <link rel="stylesheet" href=".\css\base.css">
+    <link rel="stylesheet" href=".\css\nav.css">
+    <link rel="stylesheet" href=".\css\layout.css">
+    <link rel="stylesheet" href=".\css\inventario.css">
+    <link rel="stylesheet" href=".\css\responsive.css">
 </head>
 <body>
 
@@ -115,7 +120,8 @@
 
             <section id="productos">
                 <h1>Productos</h1>
-                <table>
+                <div class="tabla-scroll">
+                    <table>
                     <thead>
                         <tr>
                             <th>Nombre</th>
@@ -128,6 +134,7 @@
                     </thead>
                     <tbody id="tbody-productos"></tbody>
                 </table>
+                </div>
             </section>
 
         </div>

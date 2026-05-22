@@ -1,0 +1,7 @@
+/* ── LAYOUT ── */
+
+.layout-principal { display: flex; flex-direction: column; }
+
+.columna-forms { display: flex; flex-direction: column; }
+
+.columna-tabla { flex: 1; min-width: 0; }
