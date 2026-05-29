@@ -13,16 +13,16 @@ if (!localStorage.getItem('usuarios')) {
 
 if (!localStorage.getItem('productos')) {
     localStorage.setItem('productos', JSON.stringify([
-        { id: 1,  nombre: 'Píxeles de Sangre',           cantidad: 7,  precio: 12.99, descripcion: 'Un hacker descubre que su vida es parte de un videojuego mortal.',       anio: 2018 },
-        { id: 2,  nombre: 'Calle Futura 2099',            cantidad: 4,  precio: 14.50, descripcion: 'Pandillas cibernéticas luchan por el control de la última ciudad libre.', anio: 2022 },
-        { id: 3,  nombre: 'El Último Verano en Marsella', cantidad: 10, precio: 9.99,  descripcion: 'Un amor imposible entre dos jóvenes en la costa francesa.',              anio: 2016 },
-        { id: 4,  nombre: 'Fragmentos de Memoria',        cantidad: 0,  precio: 15.99, descripcion: 'Un hombre despierta sin recordar quién es y sigue pistas de su pasado.', anio: 2020 },
-        { id: 5,  nombre: 'Neon Samurai',                 cantidad: 6,  precio: 13.75, descripcion: 'Un samurái del futuro combate en un Tokio dominado por IA corrupta.',    anio: 2021 },
-        { id: 6,  nombre: 'La Casa del Eco',              cantidad: 8,  precio: 11.20, descripcion: 'Una familia escucha voces del pasado dentro de su nueva casa.',          anio: 2017 },
-        { id: 7,  nombre: 'Proyecto Ícaro',               cantidad: 0,  precio: 16.00, descripcion: 'Un experimento espacial sale mal y la tripulación pierde la cordura.',   anio: 2019 },
-        { id: 8,  nombre: 'Bajo Cero 88',                 cantidad: 12, precio: 8.99,  descripcion: 'Supervivientes atrapados en una base polar tras una tormenta global.',   anio: 2014 },
-        { id: 9,  nombre: 'Código Eclipse',               cantidad: 0,  precio: 14.99, descripcion: 'Un grupo de hackers intenta evitar el colapso de internet mundial.',     anio: 2023 },
-        { id: 10, nombre: 'Rutas de Humo',                cantidad: 6,  precio: 10.50, descripcion: 'Un detective sigue una red de narcotráfico en una ciudad corrupta.',     anio: 2015 }
+        { id: 1,  nombre: 'Píxeles de Sangre',           cantidad: 7,  precio: 12.99, descripcion: 'Un hacker descubre que su vida es parte de un videojuego mortal.',       anio: 2018, poster: '' },
+        { id: 2,  nombre: 'Calle Futura 2099',            cantidad: 4,  precio: 14.50, descripcion: 'Pandillas cibernéticas luchan por el control de la última ciudad libre.', anio: 2022, poster: '' },
+        { id: 3,  nombre: 'El Último Verano en Marsella', cantidad: 10, precio: 9.99,  descripcion: 'Un amor imposible entre dos jóvenes en la costa francesa.',              anio: 2016, poster: '' },
+        { id: 4,  nombre: 'Fragmentos de Memoria',        cantidad: 0,  precio: 15.99, descripcion: 'Un hombre despierta sin recordar quién es y sigue pistas de su pasado.', anio: 2020, poster: '' },
+        { id: 5,  nombre: 'Neon Samurai',                 cantidad: 6,  precio: 13.75, descripcion: 'Un samurái del futuro combate en un Tokio dominado por IA corrupta.',    anio: 2021, poster: '' },
+        { id: 6,  nombre: 'La Casa del Eco',              cantidad: 8,  precio: 11.20, descripcion: 'Una familia escucha voces del pasado dentro de su nueva casa.',          anio: 2017, poster: '' },
+        { id: 7,  nombre: 'Proyecto Ícaro',               cantidad: 0,  precio: 16.00, descripcion: 'Un experimento espacial sale mal y la tripulación pierde la cordura.',   anio: 2019, poster: '' },
+        { id: 8,  nombre: 'Bajo Cero 88',                 cantidad: 12, precio: 8.99,  descripcion: 'Supervivientes atrapados en una base polar tras una tormenta global.',   anio: 2014, poster: '' },
+        { id: 9,  nombre: 'Código Eclipse',               cantidad: 0,  precio: 14.99, descripcion: 'Un grupo de hackers intenta evitar el colapso de internet mundial.',     anio: 2023, poster: '' },
+        { id: 10, nombre: 'Rutas de Humo',                cantidad: 6,  precio: 10.50, descripcion: 'Un detective sigue una red de narcotráfico en una ciudad corrupta.',     anio: 2015, poster: '' }
     ]));
 }
 
@@ -151,6 +151,7 @@ function renderTabla(lista) {
         const tr = document.createElement('tr');
         if (parseInt(p.cantidad) === 0) tr.className = 'sin-stock';
         tr.innerHTML =
+            '<td><button class="btn-poster" onclick="mostrarPoster(\'' + (p.poster || '') + '\')">🎞️ Poster</button></td>' +
             '<td>' + p.nombre + '</td>' +
             '<td>' + p.cantidad + '</td>' +
             '<td>' + p.precio + '</td>' +
@@ -218,18 +219,35 @@ if (formAnadir) {
             }
         }
 
-        productos.push({
+        const fileInput = document.getElementById('poster');
+        const file = fileInput.files[0];
+
+        const nuevoProducto = {
             id:          nuevoId,
             nombre:      document.getElementById('nombre').value.trim(),
             cantidad:    document.getElementById('cantidad').value,
             precio:      document.getElementById('precio').value,
             descripcion: document.getElementById('descripcion').value.trim(),
-            anio:        document.getElementById('anio').value
-        });
+            anio:        document.getElementById('anio').value,
+            poster:      ''
+        };
 
-        localStorage.setItem('productos', JSON.stringify(productos));
-        formAnadir.reset();
-        cargarInventario();
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                nuevoProducto.poster = e.target.result;
+                productos.push(nuevoProducto);
+                localStorage.setItem('productos', JSON.stringify(productos));
+                formAnadir.reset();
+                cargarInventario();
+            };
+            reader.readAsDataURL(file);
+        } else {
+            productos.push(nuevoProducto);
+            localStorage.setItem('productos', JSON.stringify(productos));
+            formAnadir.reset();
+            cargarInventario();
+        }
     });
 }
 
@@ -286,9 +304,24 @@ if (formEditar) {
         productos[idx].descripcion = document.getElementById('edit-descripcion').value.trim();
         productos[idx].anio        = document.getElementById('edit-anio').value;
 
-        localStorage.setItem('productos', JSON.stringify(productos));
-        formEditar.reset();
-        cargarInventario();
+        const fileEditInput = document.getElementById('edit-poster');
+        const fileEdit = fileEditInput.files[0];
+
+        if (fileEdit) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                productos[idx].poster = e.target.result;
+                localStorage.setItem('productos', JSON.stringify(productos));
+                formEditar.reset();
+                cargarInventario();
+            };
+            reader.readAsDataURL(fileEdit);
+        } else {
+            // Sin imagen nueva: se conserva el poster que ya tenía
+            localStorage.setItem('productos', JSON.stringify(productos));
+            formEditar.reset();
+            cargarInventario();
+        }
     });
 }
 
@@ -330,6 +363,20 @@ if (document.getElementById('tbody-productos')) {
 }
 
 
+// ── POSTER ──
+// Muestra el poster en un overlay al pulsar el botón de la tabla
+
+function mostrarPoster(src) {
+    if (!src) { alert('Este producto no tiene poster.'); return; }
+    document.getElementById('poster-img').src = src;
+    document.getElementById('poster-overlay').style.display = 'flex';
+}
+
+function cerrarPoster() {
+    document.getElementById('poster-overlay').style.display = 'none';
+}
+
+
 // ── CATÁLOGO USUARIO ──
 // Muestra las películas del localStorage como tarjetas visuales
 
@@ -362,6 +409,9 @@ function renderCatalogo() {
         tarjeta.innerHTML =
             '<h3>' + p.nombre + '</h3>' +
             '<p class="pelicula-desc">' + p.descripcion + '</p>' +
+            (p.poster
+                ? '<img class="pelicula-poster" src="' + p.poster + '" alt="Poster de ' + p.nombre + '">'
+                : '<div class="pelicula-poster pelicula-sin-poster">Póster no disponible</div>') +
             '<div class="pelicula-meta">' +
                 '<span class="pelicula-precio">' + parseFloat(p.precio).toFixed(2) + '€</span>' +
                 '<span class="pelicula-anio">' + p.anio + '</span>' +
@@ -377,4 +427,28 @@ function renderCatalogo() {
 
 if (document.getElementById('grid-catalogo')) {
     renderCatalogo();
+}
+
+
+// ── MENÚ HAMBURGUESA ──
+// Abre y cierra el desplegable del nav en móvil
+
+const hamburguesa = document.getElementById('nav-hamburguesa');
+if (hamburguesa) {
+    hamburguesa.addEventListener('click', function () {
+        const ul = this.closest('nav').querySelector('ul');
+        if (ul.classList.contains('abierto')) {
+            ul.classList.remove('abierto');
+        } else {
+            ul.classList.add('abierto');
+        }
+    });
+
+    // Cerrar el menú al pulsar cualquier enlace del desplegable
+    const navLinks = hamburguesa.closest('nav').querySelectorAll('ul a');
+    for (let i = 0; i < navLinks.length; i++) {
+        navLinks[i].addEventListener('click', function () {
+            hamburguesa.closest('nav').querySelector('ul').classList.remove('abierto');
+        });
+    }
 }

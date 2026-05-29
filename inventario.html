@@ -31,6 +31,11 @@
                 <img src="./imagenes/Vitaly.png" alt="Vitaly" class="nav-logo">
             </a>
         </div>
+        <button class="nav-hamburguesa" id="nav-hamburguesa" aria-label="Menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 
     <header>
@@ -76,6 +81,12 @@
                         <span aria-hidden="true"></span>
                         <input type="number" id="anio" min="1900" max="2026">
                     </div>
+                    <div>
+                        <label>Poster</label>
+                        <span aria-hidden="true"></span>
+                        <label for="poster" class="btn-file">Seleccionar archivo</label>
+                        <input type="file" id="poster" accept="image/*" style="display:none">
+                    </div>
                     <button type="submit">Añadir producto</button>
                 </form>
             </section>
@@ -110,6 +121,12 @@
                         <span aria-hidden="true"></span>
                         <input type="number" id="edit-anio" min="1900" max="2026">
                     </div>
+                    <div>
+                        <label>Poster</label>
+                        <span aria-hidden="true"></span>
+                        <label for="edit-poster" class="btn-file">Seleccionar archivo</label>
+                        <input type="file" id="edit-poster" accept="image/*" style="display:none">
+                    </div>
                     <button type="submit">Guardar cambios</button>
                 </form>
             </section>
@@ -124,6 +141,7 @@
                     <table>
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Nombre</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
@@ -154,6 +172,13 @@
     </footer>
 
     <div id="mensaje" role="status" aria-live="polite"></div>
+
+    <div id="poster-overlay">
+        <div id="poster-box">
+            <button id="poster-cerrar" onclick="cerrarPoster()">✕</button>
+            <img id="poster-img" src="" alt="Poster">
+        </div>
+    </div>
 
     <script src="app.js"></script>
 

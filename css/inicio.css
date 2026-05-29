@@ -134,3 +134,10 @@
     color: var(--azul);
     margin: 0;
 }
+
+#sobre-nosotros,
+#catalogo,
+#trailers,
+#contacto {
+    scroll-margin-top: 102px;
+}

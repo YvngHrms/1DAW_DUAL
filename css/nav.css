@@ -63,3 +63,6 @@ nav a:hover {
     background-color: var(--amarillo);
     color: var(--negro);
 }
+
+/* El botón hamburguesa está oculto por defecto; responsive.css lo muestra */
+.nav-hamburguesa { display: none; }

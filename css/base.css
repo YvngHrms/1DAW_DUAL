@@ -25,6 +25,15 @@ body {
     color: var(--blanco);
     font-family: var(--mono);
     font-size: 13px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body > main,
+body > .layout-principal,
+body > .dashboard-main {
+    flex: 1;
 }
 
 .titulo {
