@@ -336,11 +336,6 @@ if (inputBuscar) {
     });
 }
 
-// Arranca la carga del inventario al entrar en la página de gestión de stock
-if (document.getElementById('tbody-productos')) {
-    cargarInventario();
-}
-
 
 // ── POSTER ──
 // Muestra la imagen del poster en un overlay a pantalla completa
@@ -397,11 +392,6 @@ function renderCatalogo() {
     }
 }
 
-// Arranca la carga del catálogo al entrar en la página de películas
-if (document.getElementById('grid-catalogo')) {
-    renderCatalogo();
-}
-
 
 // ── MENÚ HAMBURGUESA ──
 // Abre y cierra el menú de navegación en dispositivos móviles
@@ -424,3 +414,18 @@ if (hamburguesa) {
         });
     }
 }
+
+
+// ── ARRANQUE ──
+// Espera a que el DOM esté listo antes de ejecutar las funciones que pintan datos en pantalla
+document.addEventListener('DOMContentLoaded', function () {
+
+    if (document.getElementById('grid-catalogo')) {
+        renderCatalogo();
+    }
+
+    if (document.getElementById('tbody-productos')) {
+        cargarInventario();
+    }
+
+});
