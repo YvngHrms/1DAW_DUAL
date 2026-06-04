@@ -1,6 +1,4 @@
-// ── USUARIOS POR DEFECTO ──
-// Si no hay usuarios guardados en el navegador, creamos los tres de prueba
-
+// Carga usuarios de prueba en el navegador si no existe ninguno guardado
 if (!localStorage.getItem('usuarios')) {
     localStorage.setItem('usuarios', JSON.stringify([
         { usuario: 'admin',   email: 'admin@retrovision.com',   password: 'admin' },
@@ -9,8 +7,7 @@ if (!localStorage.getItem('usuarios')) {
     ]));
 }
 
-// Si no hay productos guardados, cargamos el catálogo inicial
-
+// Carga el catálogo inicial de películas si no hay productos guardados
 if (!localStorage.getItem('productos')) {
     localStorage.setItem('productos', JSON.stringify([
         { id: 1,  nombre: 'Píxeles de Sangre',           cantidad: 7,  precio: 12.99, descripcion: 'Un hacker descubre que su vida es parte de un videojuego mortal.',       anio: 2018, poster: '' },
@@ -26,19 +23,19 @@ if (!localStorage.getItem('productos')) {
     ]));
 }
 
-// Funciones auxiliares para leer los datos del localStorage
-
+// Devuelve el array de usuarios guardado en el navegador
 function getUsuarios() {
     return JSON.parse(localStorage.getItem('usuarios')) || [];
 }
 
+// Devuelve el array de productos guardado en el navegador
 function getProductos() {
     return JSON.parse(localStorage.getItem('productos')) || [];
 }
 
 
 // ── LOGIN ──
-// Comprueba si el usuario y contraseña existen y redirige según su rol
+// Comprueba credenciales y redirige al admin o al lobby según el usuario que entra
 
 const formLogin = document.getElementById('form-login');
 if (formLogin) {
@@ -50,7 +47,6 @@ if (formLogin) {
         const error    = document.getElementById('error-msg');
         const usuarios = getUsuarios();
 
-        // Buscar el usuario en la lista
         let user = null;
         for (let i = 0; i < usuarios.length; i++) {
             if (usuarios[i].usuario === usuario) {
@@ -69,7 +65,6 @@ if (formLogin) {
             return;
         }
 
-        // Guardar sesión y redirigir según si es admin o no
         localStorage.setItem('sesion', JSON.stringify({ usuario: user.usuario, esAdmin: user.usuario === 'admin' }));
 
         if (user.usuario === 'admin') {
@@ -82,7 +77,7 @@ if (formLogin) {
 
 
 // ── REGISTRO ──
-// Valida el formulario y crea un nuevo usuario si todo está correcto
+// Valida el formulario y guarda el nuevo usuario si los datos son correctos
 
 const formRegistro = document.getElementById('form-registro');
 if (formRegistro) {
@@ -101,7 +96,6 @@ if (formRegistro) {
             return;
         }
 
-        // Comprobar si el usuario ya existe
         let yaExiste = false;
         for (let i = 0; i < usuarios.length; i++) {
             if (usuarios[i].usuario === usuario) {
@@ -115,7 +109,6 @@ if (formRegistro) {
             return;
         }
 
-        // Añadir el nuevo usuario y guardar
         usuarios.push({ usuario: usuario, email: email, password: password });
         localStorage.setItem('usuarios', JSON.stringify(usuarios));
         window.location.href = 'login.html';
@@ -124,7 +117,7 @@ if (formRegistro) {
 
 
 // ── LOGOUT ──
-// Borra la sesión activa y vuelve al inicio
+// Borra la sesión activa del navegador y redirige a la página de inicio
 
 const btnLogout = document.getElementById('btn-logout');
 if (btnLogout) {
@@ -138,8 +131,7 @@ if (btnLogout) {
 
 // ── INVENTARIO ──
 
-// Dibuja las filas de la tabla con la lista de productos recibida
-
+// Dibuja las filas de la tabla con los productos de la lista recibida
 function renderTabla(lista) {
     const tbody = document.getElementById('tbody-productos');
     if (!tbody) return;
@@ -162,8 +154,7 @@ function renderTabla(lista) {
     }
 }
 
-// Rellena el desplegable de edición con los productos actuales
-
+// Rellena el desplegable de edición con los nombres de los productos actuales
 function renderSelect() {
     const select = document.getElementById('producto-editar');
     if (!select) return;
@@ -177,13 +168,11 @@ function renderSelect() {
     }
 }
 
-// Carga el inventario completo o filtrado según la búsqueda guardada
-
+// Aplica el filtro de búsqueda guardado y refresca la tabla y el desplegable
 function cargarInventario() {
     const busqueda  = localStorage.getItem('ultimaBusqueda') || '';
     const productos = getProductos();
 
-    // Si hay búsqueda activa, filtramos por nombre; si no, mostramos todos
     let filtrado = [];
     if (busqueda === '') {
         filtrado = productos;
@@ -202,8 +191,7 @@ function cargarInventario() {
     renderSelect();
 }
 
-// Añadir un nuevo producto al pulsar el formulario
-
+// Recoge los campos del formulario y añade un nuevo producto al catálogo
 const formAnadir = document.getElementById('form-anadir');
 if (formAnadir) {
     formAnadir.addEventListener('submit', function (e) {
@@ -211,7 +199,6 @@ if (formAnadir) {
 
         const productos = getProductos();
 
-        // Calcular el siguiente id disponible recorriendo los existentes
         let nuevoId = 1;
         for (let i = 0; i < productos.length; i++) {
             if (productos[i].id >= nuevoId) {
@@ -251,8 +238,7 @@ if (formAnadir) {
     });
 }
 
-// Al seleccionar un producto en el desplegable, rellenar los campos con sus datos
-
+// Al elegir un producto del desplegable, rellena los campos con sus datos actuales
 const selectEditar = document.getElementById('producto-editar');
 if (selectEditar) {
     selectEditar.addEventListener('change', function () {
@@ -275,8 +261,7 @@ if (selectEditar) {
     });
 }
 
-// Guardar los cambios del formulario de edición
-
+// Sobreescribe los datos del producto seleccionado con los valores del formulario de edición
 const formEditar = document.getElementById('form-editar');
 if (formEditar) {
     formEditar.addEventListener('submit', function (e) {
@@ -287,7 +272,6 @@ if (formEditar) {
 
         if (!id) return;
 
-        // Buscar la posición del producto a editar
         let idx = -1;
         for (let i = 0; i < productos.length; i++) {
             if (productos[i].id === id) {
@@ -298,7 +282,6 @@ if (formEditar) {
 
         if (idx === -1) return;
 
-        // Reemplazar los campos con los nuevos valores
         productos[idx].cantidad    = document.getElementById('edit-cantidad').value;
         productos[idx].precio      = document.getElementById('edit-precio').value;
         productos[idx].descripcion = document.getElementById('edit-descripcion').value.trim();
@@ -317,7 +300,6 @@ if (formEditar) {
             };
             reader.readAsDataURL(fileEdit);
         } else {
-            // Sin imagen nueva: se conserva el poster que ya tenía
             localStorage.setItem('productos', JSON.stringify(productos));
             formEditar.reset();
             cargarInventario();
@@ -325,8 +307,7 @@ if (formEditar) {
     });
 }
 
-// Eliminar el producto cuyo id coincida y recargar la tabla
-
+// Elimina el producto con el id indicado tras pedir confirmación al usuario
 function eliminarProducto(id) {
     if (!confirm('¿Estás seguro de que quieres eliminar este producto? Esta acción no se puede deshacer.')) return;
 
@@ -343,8 +324,7 @@ function eliminarProducto(id) {
     cargarInventario();
 }
 
-// Búsqueda en tiempo real: filtra mientras el usuario escribe
-
+// Filtra la tabla en tiempo real mientras el usuario escribe en el campo de búsqueda
 const inputBuscar = document.getElementById('filtro-nombre');
 if (inputBuscar) {
     inputBuscar.addEventListener('input', function () {
@@ -356,30 +336,28 @@ if (inputBuscar) {
     });
 }
 
-// Si estamos en la página de inventario, cargamos los datos al abrir la página
-
+// Arranca la carga del inventario al entrar en la página de gestión de stock
 if (document.getElementById('tbody-productos')) {
     cargarInventario();
 }
 
 
 // ── POSTER ──
-// Muestra el poster en un overlay al pulsar el botón de la tabla
-
+// Muestra la imagen del poster en un overlay a pantalla completa
 function mostrarPoster(src) {
     if (!src) { alert('Este producto no tiene poster.'); return; }
     document.getElementById('poster-img').src = src;
     document.getElementById('poster-overlay').style.display = 'flex';
 }
 
+// Oculta el overlay del poster al pulsar el botón de cerrar
 function cerrarPoster() {
     document.getElementById('poster-overlay').style.display = 'none';
 }
 
 
 // ── CATÁLOGO USUARIO ──
-// Muestra las películas del localStorage como tarjetas visuales
-
+// Genera una tarjeta visual por cada película y la inserta en el grid del catálogo
 function renderCatalogo() {
     const grid = document.getElementById('grid-catalogo');
     if (!grid) return;
@@ -390,7 +368,6 @@ function renderCatalogo() {
     for (let i = 0; i < productos.length; i++) {
         const p = productos[i];
 
-        // Decidir si hay stock o no
         let textoStock;
         let claseStock;
         if (parseInt(p.cantidad) > 0) {
@@ -401,11 +378,9 @@ function renderCatalogo() {
             claseStock = 'agotado';
         }
 
-        // Crear la tarjeta
         const tarjeta = document.createElement('div');
         tarjeta.className = 'pelicula-card';
 
-        // Rellenar el contenido de la tarjeta
         tarjeta.innerHTML =
             '<h3>' + p.nombre + '</h3>' +
             '<p class="pelicula-desc">' + p.descripcion + '</p>' +
@@ -418,21 +393,18 @@ function renderCatalogo() {
                 '<span class="pelicula-stock ' + claseStock + '">' + textoStock + '</span>' +
             '</div>';
 
-        // Añadir la tarjeta al grid
         grid.appendChild(tarjeta);
     }
 }
 
-// Si estamos en la página del catálogo, cargamos las tarjetas al abrir la página
-
+// Arranca la carga del catálogo al entrar en la página de películas
 if (document.getElementById('grid-catalogo')) {
     renderCatalogo();
 }
 
 
 // ── MENÚ HAMBURGUESA ──
-// Abre y cierra el desplegable del nav en móvil
-
+// Abre y cierra el menú de navegación en dispositivos móviles
 const hamburguesa = document.getElementById('nav-hamburguesa');
 if (hamburguesa) {
     hamburguesa.addEventListener('click', function () {
@@ -444,7 +416,7 @@ if (hamburguesa) {
         }
     });
 
-    // Cerrar el menú al pulsar cualquier enlace del desplegable
+    // Cierra el menú al pulsar cualquier enlace dentro de él
     const navLinks = hamburguesa.closest('nav').querySelectorAll('ul a');
     for (let i = 0; i < navLinks.length; i++) {
         navLinks[i].addEventListener('click', function () {
