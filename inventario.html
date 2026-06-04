@@ -4,26 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <meta name="author" content="Abraham García Nevado">
-    <title>Proyecto Dual Vitaly - Catálogo RetroVisión</title>
+    <title>Proyecto Dual Vitaly - Control de inventario videoclub</title>
     <link rel="icon" href="./imagenes/RetroVision.png" type="image/png">
     <link rel="stylesheet" href=".\css\base.css">
     <link rel="stylesheet" href=".\css\nav.css">
-    <link rel="stylesheet" href=".\css\inicio.css">
-    <link rel="stylesheet" href=".\css\dashboard.css">
+    <link rel="stylesheet" href=".\css\layout.css">
+    <link rel="stylesheet" href=".\css\inventario.css">
     <link rel="stylesheet" href=".\css\responsive.css">
 </head>
 <body>
 
-    <!-- Barra de navegación del usuario: volver a mi cuenta, cerrar sesión y logos -->
+    <!-- Barra de navegación del admin: anclas a secciones, inicio y logos -->
     <nav>
         <div class="nav-logos">
-            <a href="homelobby.html">
+            <a href="index.html">
                 <img src="./imagenes/RetroVision.png" alt="RetroVisión" class="nav-logo">
             </a>
         </div>
         <ul>
-            <li><a href="homelobby.html">← Mi cuenta</a></li>
-            <li><a href="#" id="btn-logout">Cerrar sesión</a></li>
+            <li><a href="#añadir-producto">Añadir</a></li>
+            <li><a href="#editar-producto">Editar</a></li>
+            <li><a href="#productos">Tabla</a></li>
+            <li><a href="index.html">← Inicio</a></li>
         </ul>
         <div class="nav-logos">
             <a href="https://vitaly.es/" target="_blank">
@@ -37,17 +39,131 @@
         </button>
     </nav>
 
-    <!-- Cabecera de la página del catálogo -->
+    <!-- Cabecera de la página de inventario -->
     <header>
-        <h1 class="titulo">Catálogo de películas</h1>
+        <h1 class="titulo">Videoclub: RetroVisión — Control de inventario</h1>
     </header>
 
-    <!-- Contenedor donde app.js inyecta dinámicamente las tarjetas de cada película -->
-    <div class="seccion">
-        <div class="seccion-inner">
-            <h2 class="seccion-titulo">Títulos disponibles</h2>
-            <div id="grid-catalogo" class="catalogo-peliculas"></div>
+    <div class="layout-principal">
+
+        <!-- Columna izquierda: buscador y formularios de añadir y editar productos -->
+        <div class="columna-forms">
+
+            <!-- Campo de búsqueda en tiempo real que filtra la tabla por nombre -->
+            <section id="busqueda">
+                <form>
+                    <label for="filtro-nombre">🔎 Buscar producto</label>
+                    <input type="text" id="filtro-nombre" placeholder="Escribe el nombre...">
+                </form>
+            </section>
+
+            <!-- Formulario para añadir un nuevo producto al catálogo -->
+            <section id="añadir-producto" class="card">
+                <h1>Añadir producto</h1>
+                <form id="form-anadir">
+                    <div>
+                        <label for="nombre">Nombre del producto</label>
+                        <span aria-hidden="true"></span>
+                        <input type="text" id="nombre">
+                    </div>
+                    <div>
+                        <label for="cantidad">Cantidad</label>
+                        <span aria-hidden="true"></span>
+                        <input type="number" id="cantidad">
+                    </div>
+                    <div>
+                        <label for="precio">Precio</label>
+                        <span aria-hidden="true"></span>
+                        <input type="number" id="precio" min="0" step="0.01">
+                    </div>
+                    <div>
+                        <label for="descripcion">Descripción</label>
+                        <span aria-hidden="true"></span>
+                        <input type="text" id="descripcion">
+                    </div>
+                    <div>
+                        <label for="anio">Año lanzamiento</label>
+                        <span aria-hidden="true"></span>
+                        <input type="number" id="anio" min="1900" max="2026">
+                    </div>
+                    <div>
+                        <label>Poster</label>
+                        <span aria-hidden="true"></span>
+                        <label for="poster" class="btn-file">Seleccionar archivo</label>
+                        <input type="file" id="poster" accept="image/*" style="display:none">
+                    </div>
+                    <button type="submit">Añadir producto</button>
+                </form>
+            </section>
+
+            <!-- Formulario para modificar los datos de un producto existente -->
+            <section id="editar-producto" class="card">
+                <h1>Editar producto</h1>
+                <form id="form-editar">
+                    <div>
+                        <label for="producto-editar">Producto</label>
+                        <span aria-hidden="true"></span>
+                        <!-- Desplegable que app.js rellena con los productos del catálogo -->
+                        <select id="producto-editar" required>
+                            <option value="">-- Selecciona --</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="edit-cantidad">Cantidad</label>
+                        <span aria-hidden="true"></span>
+                        <input type="number" id="edit-cantidad" min="0" required>
+                    </div>
+                    <div>
+                        <label for="edit-precio">Precio</label>
+                        <span aria-hidden="true"></span>
+                        <input type="number" id="edit-precio" min="0" step="0.01" required>
+                    </div>
+                    <div>
+                        <label for="edit-descripcion">Descripción</label>
+                        <span aria-hidden="true"></span>
+                        <input type="text" id="edit-descripcion">
+                    </div>
+                    <div>
+                        <label for="edit-anio">Año lanzamiento</label>
+                        <span aria-hidden="true"></span>
+                        <input type="number" id="edit-anio" min="1900" max="2026">
+                    </div>
+                    <div>
+                        <label>Poster</label>
+                        <span aria-hidden="true"></span>
+                        <label for="edit-poster" class="btn-file">Seleccionar archivo</label>
+                        <input type="file" id="edit-poster" accept="image/*" style="display:none">
+                    </div>
+                    <button type="submit">Guardar cambios</button>
+                </form>
+            </section>
+
         </div>
+
+        <!-- Columna derecha: tabla con todos los productos, sus datos y botón de eliminar -->
+        <div class="columna-tabla">
+            <section id="productos">
+                <h1>Productos</h1>
+                <div class="tabla-scroll">
+                    <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Descripción</th>
+                            <th>Año</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <!-- app.js inyecta aquí una fila por cada producto del catálogo -->
+                    <tbody id="tbody-productos"></tbody>
+                </table>
+                </div>
+            </section>
+        </div>
+
     </div>
 
     <!-- Pie de página con logos y créditos del proyecto -->
@@ -55,13 +171,24 @@
         <div class="footer-content">
             <img src="./imagenes/RetroVision.png" alt="RetroVisión">
             <div class="footer-text">
-                <p><strong>Videoclub RetroVisión</strong> — Desde 1994</p>
+                <p><strong>Videoclub RetroVisión</strong> — Control de inventario</p>
                 <p>Proyecto Dual Vitaly · Desarrollado por Abraham García Nevado</p>
                 <p>&copy; 2026 RetroVisión. Todos los derechos reservados.</p>
             </div>
             <img src="./imagenes/Vitaly.png" alt="Vitaly">
         </div>
     </footer>
+
+    <!-- Zona de mensajes de estado accesible para lectores de pantalla -->
+    <div id="mensaje" role="status" aria-live="polite"></div>
+
+    <!-- Overlay que muestra el poster a pantalla completa al pulsar el botón de la tabla -->
+    <div id="poster-overlay">
+        <div id="poster-box">
+            <button id="poster-cerrar" onclick="cerrarPoster()">✕</button>
+            <img id="poster-img" src="" alt="Poster">
+        </div>
+    </div>
 
     <script src="app.js"></script>
 
