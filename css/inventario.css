@@ -37,6 +37,53 @@
 
 #busqueda input:focus { border-color: var(--verde); }
 
+/* ── FILTRO CATEGORÍA ── */
+
+.card-filtro {
+    margin: 0 14px 14px;
+    padding: 10px 14px;
+    background-color: var(--gris);
+    border: 2px solid var(--azul);
+    box-shadow: 4px 4px 0 var(--negro);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-filtro form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.card-filtro label {
+    color: var(--azul);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+
+.card-filtro select {
+    flex: 1;
+    min-width: 0;
+    height: 28px;
+    padding: 0 6px;
+    font-family: var(--mono);
+    font-size: 13px;
+    background-color: var(--negro);
+    color: var(--verde);
+    border: 1px solid var(--azul);
+    outline: none;
+}
+
+.card-filtro select:focus { border-color: var(--verde); }
+
+.card-filtro select option {
+    background-color: var(--negro);
+    color: var(--blanco);
+}
+
 .card {
     margin: 0 14px 14px;
     background-color: var(--gris);
@@ -172,6 +219,7 @@
 
 .tabla-scroll {
     overflow-x: auto;
+    width: 100%;
 }
 
 table {
@@ -179,6 +227,7 @@ table {
     border-collapse: collapse;
     font-family: var(--mono);
     font-size: 13px;
+    table-layout: auto;
 }
 
 table th {
@@ -195,10 +244,14 @@ table th {
 table td {
     padding: 4px 8px;
     border-bottom: 1px solid #222;
-    background-color: var(--negro);
     color: var(--blanco);
     vertical-align: middle;
 }
+
+/* ── FILAS ALTERNADAS ── */
+
+table tbody tr.fila-par td   { background-color: var(--negro); }
+table tbody tr.fila-impar td { background-color: #1e1e1e; }
 
 table tbody tr:hover td {
     background-color: #1a0000;
@@ -263,6 +316,12 @@ table tbody tr.sin-stock td:first-child {
 .btn-eliminar:active { box-shadow: 1px 1px 0 var(--negro); }
 
 table td form { margin: 0; padding: 0; }
+
+/* ── CELDA DE ACCIONES ── */
+
+.td-acciones {
+    white-space: nowrap;
+}
 
 #mensaje {
     position: fixed;
@@ -332,6 +391,7 @@ table td form { margin: 0; padding: 0; }
 }
 
 #busqueda,
+#filtro-cat,
 #añadir-producto,
 #editar-producto,
 #productos {
