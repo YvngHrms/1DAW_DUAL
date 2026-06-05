@@ -229,6 +229,23 @@ table tbody tr.sin-stock td:first-child {
 .btn-poster:hover { background-color: var(--azul); color: var(--negro); }
 .btn-poster:active { box-shadow: 1px 1px 0 var(--negro); }
 
+.btn-vender {
+    background-color: var(--gris);
+    color: var(--verde);
+    border: 1px solid var(--verde);
+    box-shadow: 2px 2px 0 var(--negro);
+    padding: 2px 10px;
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 8px;
+}
+
+.btn-vender:hover { background-color: var(--verde); color: var(--negro); }
+.btn-vender:active { box-shadow: 1px 1px 0 var(--negro); }
+
 .btn-eliminar {
     background-color: var(--gris);
     color: var(--rojo);

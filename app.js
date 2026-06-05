@@ -149,7 +149,10 @@ function renderTabla(lista) {
             '<td>' + p.precio + '</td>' +
             '<td>' + p.descripcion + '</td>' +
             '<td>' + p.anio + '</td>' +
-            '<td><button class="btn-eliminar" onclick="eliminarProducto(' + p.id + ')">Eliminar</button></td>';
+            '<td>' +
+                '<button class="btn-vender" onclick="venderProducto(' + p.id + ')">Vender 1</button>' +
+                '<button class="btn-eliminar" onclick="eliminarProducto(' + p.id + ')">Eliminar</button>' +
+            '</td>';
         tbody.appendChild(tr);
     }
 }
@@ -196,6 +199,32 @@ const formAnadir = document.getElementById('form-anadir');
 if (formAnadir) {
     formAnadir.addEventListener('submit', function (e) {
         e.preventDefault();
+
+        const nombreVal   = document.getElementById('nombre').value.trim();
+        const cantidadVal = parseFloat(document.getElementById('cantidad').value);
+        const precioVal   = parseFloat(document.getElementById('precio').value);
+        const error       = document.getElementById('mensaje');
+
+        if (nombreVal === '') {
+            error.textContent = 'El nombre del producto no puede estar vacío.';
+            error.style.display = 'block';
+            setTimeout(function () { error.style.display = 'none'; }, 3000);
+            return;
+        }
+
+        if (isNaN(cantidadVal) || cantidadVal < 0) {
+            error.textContent = 'La cantidad no puede estar vacía ni ser negativa.';
+            error.style.display = 'block';
+            setTimeout(function () { error.style.display = 'none'; }, 3000);
+            return;
+        }
+
+        if (isNaN(precioVal) || precioVal < 0) {
+            error.textContent = 'El precio no puede estar vacío ni ser negativo.';
+            error.style.display = 'block';
+            setTimeout(function () { error.style.display = 'none'; }, 3000);
+            return;
+        }
 
         const productos = getProductos();
 
@@ -321,6 +350,33 @@ function eliminarProducto(id) {
     }
 
     localStorage.setItem('productos', JSON.stringify(nuevaLista));
+    cargarInventario();
+}
+
+// Resta 1 unidad al stock del producto con el id indicado
+function venderProducto(id) {
+    const productos = getProductos();
+    let idx = -1;
+
+    for (let i = 0; i < productos.length; i++) {
+        if (productos[i].id === id) {
+            idx = i;
+            break;
+        }
+    }
+
+    if (idx === -1) return;
+
+    if (parseInt(productos[idx].cantidad) <= 0) {
+        const error = document.getElementById('mensaje');
+        error.textContent = 'No hay stock disponible para vender.';
+        error.style.display = 'block';
+        setTimeout(function () { error.style.display = 'none'; }, 3000);
+        return;
+    }
+
+    productos[idx].cantidad = parseInt(productos[idx].cantidad) - 1;
+    localStorage.setItem('productos', JSON.stringify(productos));
     cargarInventario();
 }
 
