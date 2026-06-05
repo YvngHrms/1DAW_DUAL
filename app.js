@@ -7,10 +7,6 @@ if (!localStorage.getItem('usuarios')) {
     ]));
 }
 
-// Carga el catálogo inicial de películas si no hay productos guardados
-// Los posters se cargan desde la carpeta ./posters/ con el nombre del archivo indicado.
-// Para añadir un poster por defecto a una película, coloca la imagen en ./posters/
-// y pon la ruta en el campo poster, por ejemplo: poster: './posters/blade-runner.jpg'
 if (!localStorage.getItem('productos')) {
     localStorage.setItem('productos', JSON.stringify([
         { id: 1,  nombre: 'Blade Runner',                    categoria: 'Ciencia ficción', cantidad: 5,  precio: 14.99, descripcion: 'Un policía especializado caza replicantes en un Los Ángeles distópico del futuro.',                       anio: 1982, poster: './posters/blade-runner.webp' },
